@@ -30,9 +30,11 @@ export const userSignup = async(req : Request, res : Response, next: NextFunctio
         // create token and store cookie(first clear previous cookie token)
 
         res.clearCookie(COOKIE_NAME, {
-            httpOnly: true,
-            signed: true,
             path: "/",
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none',
+            signed: true
         }); // if user re-login delete previous cookie and assign new cookie
         
         const token = createToken(user._id.toString(), user.email, "7d");
@@ -66,9 +68,11 @@ export const userLogin = async(req : Request, res : Response, next: NextFunction
 
         // create token and store cookie(first clear previous cookie token)
         res.clearCookie(COOKIE_NAME, {
-            path : "/",
+            path: "/",
             httpOnly: true,
-            signed:true
+            secure: true,
+            sameSite: 'none',
+            signed: true
         }); // if user re-login delete previous cookie and assign new cookie
         
         // crete token ad store as cookie
@@ -118,9 +122,11 @@ export const userLogout = async (req: Request, res: Response, next: NextFunction
       }
   
       res.clearCookie(COOKIE_NAME, {
-        httpOnly: true,
-        signed: true,
         path: "/",
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none',
+        signed: true
       });
   
       return res
