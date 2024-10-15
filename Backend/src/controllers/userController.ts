@@ -31,7 +31,6 @@ export const userSignup = async(req : Request, res : Response, next: NextFunctio
 
         res.clearCookie(COOKIE_NAME, {
             httpOnly: true,
-            domain: "localhost",
             signed: true,
             path: "/",
         }); // if user re-login delete previous cookie and assign new cookie
@@ -42,7 +41,6 @@ export const userSignup = async(req : Request, res : Response, next: NextFunctio
 
         res.cookie(COOKIE_NAME, token, {
             path : "/",
-            domain: "localhost", 
             expires,
             httpOnly: true,
             signed:true
@@ -67,7 +65,6 @@ export const userLogin = async(req : Request, res : Response, next: NextFunction
         // create token and store cookie(first clear previous cookie token)
         res.clearCookie(COOKIE_NAME, {
             path : "/",
-            domain: "localhost", 
             httpOnly: true,
             signed:true
         }); // if user re-login delete previous cookie and assign new cookie
@@ -79,7 +76,6 @@ export const userLogin = async(req : Request, res : Response, next: NextFunction
 
         res.cookie(COOKIE_NAME, token, {
             path : "/",
-            domain: "localhost", 
             expires: expiresIn,
             httpOnly: true,
             signed:true
@@ -119,7 +115,6 @@ export const userLogout = async (req: Request, res: Response, next: NextFunction
   
       res.clearCookie(COOKIE_NAME, {
         httpOnly: true,
-        domain: "localhost",
         signed: true,
         path: "/",
       });
