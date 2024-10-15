@@ -42,6 +42,8 @@ export const userSignup = async(req : Request, res : Response, next: NextFunctio
         res.cookie(COOKIE_NAME, token, {
             path : "/",
             expires,
+            secure: true,
+            sameSite: 'none',
             httpOnly: true,
             signed:true
         });
@@ -78,6 +80,8 @@ export const userLogin = async(req : Request, res : Response, next: NextFunction
             path : "/",
             expires: expiresIn,
             httpOnly: true,
+            secure: true,
+            sameSite: 'none',
             signed:true
         });
         return res.status(200).json({message: "OK", name: user.name, email: user.email });
